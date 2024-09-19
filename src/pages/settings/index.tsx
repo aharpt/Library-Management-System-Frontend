@@ -1,7 +1,11 @@
+import NavBar from "@/components/NavBar";
+import { Typography } from "@mui/material";
+
 export default function Settings() {
   return (
     <>
-      <h1>Change User Settings</h1>
+      <NavBar />
+      <Typography variant="h3">Change User Settings</Typography>
     </>
   );
 }

@@ -1,7 +1,11 @@
+import { Typography } from "@mui/material";
+import NavBar from "@/components/NavBar";
+
 export default function Search() {
   return (
     <>
-      <h1>Search Books</h1>
+      <NavBar />
+      <Typography variant="h3">Search Books</Typography>
     </>
   );
 }
