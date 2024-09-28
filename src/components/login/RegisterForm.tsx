@@ -1,14 +1,18 @@
 "use client";
+
 import { useState, ChangeEvent } from "react";
 import { FormGroup, TextField, Button } from "@mui/material";
 import { VisibilityOutlined, VisibilityOffOutlined } from "@mui/icons-material";
 import VisibilityIcon from "./VisibilityIcon";
 
 type VisibilityType = "on" | "off";
-export default function LoginForm() {
+export default function RegisterForm() {
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [passwordValue, setPasswordValue] = useState("");
   const [passwordVisibility, setPasswordVisibility] =
+    useState<VisibilityType>("off");
+  const [passwordMatchVisibility, setPasswordMatchVisibility] =
     useState<VisibilityType>("off");
 
   const onUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,8 +25,13 @@ export default function LoginForm() {
   };
 
   const onPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPasswordValue(event.target.value);
+  };
+
+  const onPasswordMatchChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    if (value.length >= 6) {
+
+    if (passwordValue.length >= 6 && passwordValue === value) {
       setIsPasswordValid(true);
     } else if (isPasswordValid) {
       setIsPasswordValid(false);
@@ -31,6 +40,10 @@ export default function LoginForm() {
 
   const togglePasswordVisibility = () => {
     setPasswordVisibility((prevVal) => (prevVal === "off" ? "on" : "off"));
+  };
+
+  const togglePasswordMatchVisibility = () => {
+    setPasswordMatchVisibility((prevVal) => (prevVal === "off" ? "on" : "off"));
   };
 
   return (
@@ -68,13 +81,38 @@ export default function LoginForm() {
           variant="outlined"
         />
       </FormGroup>
+      <FormGroup sx={{ mt: "25px" }}>
+        <TextField
+          slotProps={{
+            input: {
+              endAdornment: (
+                <VisibilityIcon
+                  toggleVisibility={togglePasswordMatchVisibility}
+                  icon={
+                    passwordMatchVisibility === "off" ? (
+                      <VisibilityOutlined />
+                    ) : (
+                      <VisibilityOffOutlined />
+                    )
+                  }
+                />
+              ),
+            },
+          }}
+          onChange={onPasswordMatchChange}
+          id="passwordMatch"
+          label="Confirm Password"
+          type={passwordMatchVisibility === "off" ? "password" : "text"}
+          variant="outlined"
+        />
+      </FormGroup>
       <FormGroup sx={{ mt: "25px", ml: "auto" }}>
         <Button
           disabled={!isUsernameValid || !isPasswordValid}
           variant="contained"
           size="large"
         >
-          Login
+          Sign Up
         </Button>
       </FormGroup>
     </form>
