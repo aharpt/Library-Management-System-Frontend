@@ -1,44 +1,67 @@
 import Link from "next/link";
-import { Container } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+
+const listContainerStyles = {
+  display: "flex",
+  flexDirection: "row",
+  textAlign: "center",
+  mb: "15px",
+  backgroundColor: "#1976d2",
+};
+
+const listStyles = {
+  display: "flex",
+  flexDirection: "row",
+};
+
+const listButtonStyles = {
+  textAlign: "center",
+};
+
+const linkStyles = {
+  textDecoration: "none",
+  color: "white",
+};
 
 export default function NavBar() {
-  const ulStyles = {
-    display: "flex",
-    listStyleType: "none",
-  };
-
-  const liStyles = {
-    textDecoration: "none",
-    marginRight: "15px",
-  };
-
   return (
-    <Container
-      maxWidth={false}
-      sx={{ backgroundColor: "grey", padding: "15px", mb: "25px" }}
-    >
-      <ul style={ulStyles}>
-        <li>
-          <Link href="/" style={liStyles}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link href="/login" style={liStyles}>
-            Login
-          </Link>
-        </li>
-        <li>
-          <Link href="/search" style={liStyles}>
-            Search
-          </Link>
-        </li>
-        <li>
-          <Link href="/settings" style={{ textDecoration: "none" }}>
-            Settings
-          </Link>
-        </li>
-      </ul>
-    </Container>
+    <Box sx={listContainerStyles}>
+      <List sx={listStyles}>
+        <ListItem disablePadding>
+          <ListItemButton sx={listButtonStyles}>
+            <Link style={linkStyles} href="/">
+              <ListItemText primary="Home" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={listButtonStyles}>
+            <Link style={linkStyles} href="/login">
+              <ListItemText primary="Login" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={listButtonStyles}>
+            <Link style={linkStyles} href="/search">
+              <ListItemText primary="Search" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton sx={listButtonStyles}>
+            <Link style={linkStyles} href="/settings">
+              <ListItemText primary="Settings" />
+            </Link>
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
   );
 }
