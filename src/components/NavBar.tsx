@@ -42,15 +42,15 @@ export default function NavBar() {
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton sx={listButtonStyles}>
-            <Link style={linkStyles} href="/login">
-              <ListItemText primary="Login" />
+            <Link style={linkStyles} href="/search">
+              <ListItemText primary="Search" />
             </Link>
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
           <ListItemButton sx={listButtonStyles}>
-            <Link style={linkStyles} href="/search">
-              <ListItemText primary="Search" />
+            <Link style={linkStyles} href="/login">
+              <ListItemText primary="Login" />
             </Link>
           </ListItemButton>
         </ListItem>
