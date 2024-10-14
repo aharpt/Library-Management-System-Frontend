@@ -28,7 +28,7 @@ export default function Login() {
       <NavBar />
       <Grid container spacing={2}>
         <Grid offset={1} size={10}>
-          <Typography variant="h2">Login/Signup</Typography>
+          <Typography variant="h4">Login/Signup</Typography>
           <hr />
         </Grid>
       </Grid>
