@@ -6,6 +6,7 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
+import { useUserStore } from "@/stores/userStore";
 
 const listContainerStyles = {
   display: "flex",
@@ -30,6 +31,7 @@ const linkStyles = {
 };
 
 export default function NavBar() {
+  const userStore = useUserStore();
   return (
     <Box sx={listContainerStyles}>
       <List sx={listStyles}>
@@ -54,13 +56,15 @@ export default function NavBar() {
             </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
+        {
+          userStore.isLoggedIn && <ListItem disablePadding>
           <ListItemButton sx={listButtonStyles}>
             <Link style={linkStyles} href="/settings">
               <ListItemText primary="Settings" />
             </Link>
           </ListItemButton>
         </ListItem>
+        }
       </List>
     </Box>
   );
