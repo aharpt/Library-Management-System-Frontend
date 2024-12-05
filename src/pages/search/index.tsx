@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { ClearOutlined, SearchOutlined } from "@mui/icons-material";
 import NavBar from "@/components/NavBar";
+import { useUserStore } from "@/stores/userStore";
 
 type TempDataType = {
   title: string;
@@ -42,6 +43,8 @@ export default function Search() {
   const [inputValue, setInputValue] = useState("");
   const [iconToShow, setIconToShow] = useState<IconToShowType>("search");
   const [filteredData, setFilteredData] = useState<TempDataType[]>(tempData);
+
+  const userStore = useUserStore();
 
   const onSearch = () => {
     setFilteredData((data) =>
@@ -115,7 +118,7 @@ export default function Search() {
                 <Typography variant="body2">{item.description}</Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Reserve</Button>
+                <Button disabled={!userStore.isLoggedIn} size="small">Reserve</Button>
               </CardActions>
             </Card>
           </Grid>
